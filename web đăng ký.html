@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đặt lịch sạc - PIT8 STATION</title>
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>Đặt lịch sạc tại <span class="highlight">PIT8 STATION</span></h1>
+    
+    <form id="bookingForm">
+      <input type="text" placeholder="Họ và tên" id="name" required />
+      <input type="tel" placeholder="Số điện thoại" id="phone" required />
+      <input type="text" placeholder="Loại phương tiện (VD: VinFast VF8)" id="vehicle" required />
+      <input type="date" id="date" required />
+      <input type="time" id="time" required />
+      
+      <button type="submit">Xác nhận đặt lịch</button>
+    </form>
+
+    <div id="confirmation" class="hidden">
+      <h2>✅ Đặt lịch thành công!</h2>
+      <p id="confirmText"></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const confirmation = document.getElementById('confirmation');
+    const confirmText = document.getElementById('confirmText');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const vehicle = document.getElementById('vehicle').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      if (name && phone && vehicle && date && time) {
+        confirmText.textContent = `Cảm ơn ${name}! Hẹn gặp bạn tại PIT8 STATION vào lúc ${time} ngày ${date}.`;
+        confirmation.classList.remove('hidden');
+        form.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
